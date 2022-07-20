@@ -5,45 +5,12 @@ import Pin from "./Pin";
 import Result from "./Result";
 import ResultBranch from "./ResultBranch";
 
+
+
 function Forms() {
-  const [value, setValue] = useState();
-  const [result, setResult] = useState([]);
-  
-  const[toggle, setToggle] = useState({pin:true, branch : false})
-
-  let handleClickPinCode = (e) => {
-    e.preventDefault();
-    fetch(`https://api.postalpincode.in/pincode/${value}`)
-      .then((response) => response.json())
-      .then((data) =>  setResult(data[0].PostOffice) );
-  };
-
-  let handleClickBranch = (e) => {
-    e.preventDefault();
-    fetch(`https://api.postalpincode.in/postoffice/${value}`)
-      .then((response) => response.json())
-      .then((data) =>   console.log(data)/* setResult(data[0].PostOffice) */ );
-  };
-
-  const handleChange = (e) => {
-    setToggle({ [e.target.value]: e.target.checked });
-    }; 
-
   return (
-    <div>
-      <h1>Indian Postal API</h1>
-      <form>
-        <input type="text" onChange={(e) => setValue(e.target.value)} />
-        <button onClick={toggle.pin ? handleClickPinCode :handleClickBranch }>Search</button>
-        <button /* onClick = {} */>Close</button>
-        
-      </form>
-      <Pin onChange={handleChange } />
-      <Postal onChange={handleChange }/>
-      <Result result={result} />
-      <ResultBranch/>
-    </div>
-  );
+    <div>Forms</div>
+  )
 }
 
-export default Forms;
+export default Forms

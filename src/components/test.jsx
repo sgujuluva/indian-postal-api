@@ -1,63 +1,98 @@
-//lib
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Form } from "react-bootstrap";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { FcSearch } from "react-icons/fc";
-import { useState } from "react";
-//import Forms from "./components/Forms";
-import Result from "./components/Result";
-
-const [pinCode, setPinCode] = useState();
-const [result, setResult] = useState([]);
-
-let handleSubmit = (e) => {
-  e.preventDefault();
-  fetch(`https://api.postalpincode.in/pincode/${pinCode}`)
-    .then((response) => response.json())
-    .then((data) => setResult(data[0].PostOffice));
-};
-
-<h1>Indian Postal API</h1>
-      <Form >
-        <input type="text" onChange={(e) => setPinCode(e.target.value)} />
-        <Button type="button" className="btn btn-primary" onClick = {handleSubmit}>
-           < FcSearch/> 
-        </Button>
-        
-        <Button type="button" className="btn btn-secondary">
-          Close
-        </Button>
-      </Form>
-      <div>
-        <input type="radio" name="search" value="pin-search" id="pin" />
-        <label htmlFor="pin">Search by Postal PIN Code</label>
-        <input type="radio" name="search" value="branch-search" id="branch" />
-        <label htmlFor="branch">Search by Post Office Branch Name</label>
-      </div>
-      <Result result={result} />
-
-
-      //form
-      import React from 'react'
-import { Button, Form } from "react-bootstrap";
-
 function Forms() {
+  const [value, setValue] = useState();
+  const [result, setResult] = useState([]);
+  
+ 
+
+  let handleClickPinCode = (e) => {
+    e.preventDefault();
+    fetch(`https://api.postalpincode.in/pincode/${value}`)
+      .then((response) => response.json())
+      .then((data) =>  setResult(data[0].PostOffice) );
+  };
+
+  let handleClickBranch = (e) => {
+    e.preventDefault();
+    fetch(`https://api.postalpincode.in/postoffice/${value}`)
+      .then((response) => response.json())
+      .then((data) =>   console.log(data)/* setResult(data[0].PostOffice) */ );
+  };
+
+  const handleChange = (e) => {
+    setToggle({ [e.target.value]: e.target.checked });
+    }; 
+
   return (
     <div>
-      <Form > {/* onSubmit = {handleSubmit} */}
-        <input type="text" />
-        <Button type="button" className="btn btn-primary">
-          Search
-        </Button>
-        {/* < FcSearch/> */}
-        <Button type="button" className="btn btn-secondary">
-          Close
-        </Button>
-      </Form>
-        </div>
-  )
+      <h1>Indian Postal API</h1>
+      <form>
+        <input type="text" onChange={(e) => setValue(e.target.value)} />
+        <button onClick={toggle.pin ? handleClickPinCode :handleClickBranch }>Search</button>
+        <button /* onClick = {} */>Close</button>
+        
+      </form>
+      <Pin onChange={handleChange } />
+      <Postal onChange={handleChange }/>
+      <Result result={result} />
+      <ResultBranch/>
+    </div>
+  );
 }
 
-export default Forms
+export default Forms;
 
-//result
+
+// new code
+
+import React, { useEffect, useState } from "react";
+//components
+import Postal from "./Postal";
+import Pin from "./Pin";
+import Result from "./Result";
+import ResultBranch from "./ResultBranch";
+
+function Forms() {
+  const [value, setValue] = useState();
+  const [result, setResult] = useState([]);
+  const [toggle, setToggle] = useState("pin");
+  const handleChange = (id) => {
+    setToggle(id);
+  };
+
+  const handleSubmit = (e, value) => {
+    e.preventDefault();
+    setToggle(toggle);
+    console.log(toggle);
+    console.log(value);
+    if (toggle === "pin") {
+      fetch(`https://api.postalpincode.in/pincode/${value}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setResult(data[0].PostOffice);
+        });
+    } else {
+      fetch(`https://api.postalpincode.in/postoffice/${value}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setResult(data[0].PostOffice);
+        });
+    }
+  };
+
+  return (
+    <div>
+      <h1>Indian Postal API</h1>
+      <form onSubmit={(e) => handleSubmit(e, value)}>
+        <input type="text" onChange={(e) => setValue(e.target.value)} />
+        <button>Search</button>
+        <button /* onClick = {} */>Close</button>
+      </form>
+      <Pin handleChange={handleChange} />
+      <Postal handleChange={handleChange} />
+      <Result result={result} />
+      <ResultBranch />
+    </div>
+  );
+}
+
+export default Forms;
