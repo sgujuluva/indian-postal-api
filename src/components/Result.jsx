@@ -1,13 +1,15 @@
 
 import React from 'react'
 
-function Result(result) {
-  console.log(result)
+function Result({result}) {
+
   return (
     <div>
-      {/*  {result.map(item => <div>{item.Name}</div>)} */}
+      { result && result.map(item => <div>{item.Name}</div>)} 
     </div>
   )
 }
 
 export default Result
+
+/* result?.map(item => <div>{item.Name}</div>) */

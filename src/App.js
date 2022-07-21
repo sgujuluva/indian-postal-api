@@ -2,32 +2,21 @@
 import { useState } from "react";
 //components
 import Forms from "./components/Forms";
-import Pin from "./components/Pin";
-import Postal from "./components/Postal";
 import Result from "./components/Result";
-import ResultBranch from "./components/ResultBranch";
 
 //styles
 import "./App.css";
 
 function App() {
-  
-  const [value, setValue] = useState();
-  const [result, setResult] = useState([]);
 
-  const handleChange = () => {
- 
-  };
+   const [result, setResult] = useState([]);
 
-  
   return (
-    <div>
+    <div className="container">
       <h1>Indian Postal API</h1>
-     <Forms setResult = {setResult}/>
-      <Pin handleChange={handleChange} />
-      <Postal handleChange={handleChange} />
-      <Result  result={result}  />
-      <ResultBranch />
+      <Forms setResult={setResult} />
+      <Result result={result} />
+      {console.log("the resut is:", result)}
     </div>
   );
 }

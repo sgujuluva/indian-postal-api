@@ -15,7 +15,7 @@ function Forms({ setResult }) {
         : `https://api.postalpincode.in/postoffice/${value}`
     )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setResult(data[0].PostOffice));
   };
 
   return (
