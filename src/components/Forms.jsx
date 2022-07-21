@@ -21,12 +21,17 @@ function Forms({ setResult }) {
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => setValue(e.target.value)} />
+        <div className="input-search">
+        <input  type="text" onChange={(e) => setValue(e.target.value)} />
         <button>Search</button>
-        <input value="pin" type="radio" name="search" id="pin-search" />
+        </div>
+        <div className="radio">
+        <input  value="pin" type="radio" name="search" id="pin-search" />
         <label htmlFor="pin-search">Search by Postal PIN Code</label>
-        <input value="branch" type="radio" name="search" id="postal-search" />
+        <input  value="branch" type="radio" name="search" id="postal-search" />
         <label htmlFor="postal-search">Search by Post Office Branch Name</label>
+        </div>
+       
       </form>
     </div>
   );
