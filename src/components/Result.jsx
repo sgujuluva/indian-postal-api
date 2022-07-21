@@ -1,16 +1,11 @@
 
 import React from 'react'
 
-function Result({result}) {
+function Result(result) {
+  console.log(result)
   return (
     <div>
-       {result.map((item,i) => {
-         return (
-         <div key={i}>
-            {item.Name}
-         </div>
-        )
-       })} 
+      {/*  {result.map(item => <div>{item.Name}</div>)} */}
     </div>
   )
 }
