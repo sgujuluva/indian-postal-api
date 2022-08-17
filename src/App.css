@@ -49,3 +49,24 @@ button {
   border-radius: 20px;
   font-size: larger;
 }
+.radio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  width: 100%;
+
+  margin-top: 4%;
+}
+.radio1 {
+  display: flex;
+
+  width: 30%;
+  justify-content: space-between;
+}
+.radio2 {
+  width: 40%;
+  display: flex;
+
+  justify-content: space-between;
+}

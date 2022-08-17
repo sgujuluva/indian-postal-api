@@ -26,11 +26,16 @@ function Forms({ setResult }) {
         <button>Search</button>
         </div>
         <div className="radio">
-        <input  value="pin" type="radio" name="search" id="pin-search" />
+          <div className="radio1">
+          <input  value="pin" type="radio" name="search" id="pin-search" />
         <label htmlFor="pin-search">Search by Postal PIN Code</label>
-        <input  value="branch" type="radio" name="search" id="postal-search" />
+          </div>
+       <div className="radio2">
+       <input  value="branch" type="radio" name="search" id="postal-search" />
         <label htmlFor="postal-search">Search by Post Office Branch Name</label>
         </div>
+       </div>
+        
        
       </form>
     </div>
