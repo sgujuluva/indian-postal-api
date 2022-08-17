@@ -18,6 +18,7 @@ body {
 
 h1 {
   text-align: center;
+  font-size: ;
   padding: 2%;
 }
 .form {
@@ -69,4 +70,19 @@ button {
   display: flex;
 
   justify-content: space-between;
+}
+/* //listing */
+.result{
+
+  width :100%;
+  height:100%;
+}
+.result p{
+  font-size: 2rem;
+  font-weight: 600;
+}
+.result li{
+  font-size: 2rem;
+  line-height: 3rem;
+  list-style-type:square;
 }

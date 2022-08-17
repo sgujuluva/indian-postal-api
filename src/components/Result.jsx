@@ -4,7 +4,8 @@ import React from 'react'
 function Result({result}) {
 
   return (
-    <div>
+    <div className="result">
+    <p> The List of Postal Offices are :</p> 
       { result && result.map(item => <div><li>{item.Name}</li></div>)} 
     </div>
   )
