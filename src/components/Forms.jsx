@@ -22,7 +22,7 @@ function Forms({ setResult }) {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-search">
-        <input  type="text" onChange={(e) => setValue(e.target.value)} />
+        <input placeholder="Type to Search" type="text" onChange={(e) => setValue(e.target.value)} />
         <button>Search</button>
         </div>
         <div className="radio">
